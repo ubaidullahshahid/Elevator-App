@@ -1,64 +1,46 @@
 const floors = [
-    {
-        floor: "3",
-        index: 0,
-        position: '0%',
-    },
-    {
-        floor: "2",
-        index: 1,
-        position: '25%',
-    },
-    {
-        floor: "1",
-        index: 2,
-        position: '50%',
-    },
-    {
-        floor: "G",
-        index: 3,
-        position: '75%',
-    },
+  {
+    number: 4,
+    position: "76%",
+  },
+  {
+    number: 3,
+    position: "50.5%",
+  },
+  {
+    number: 2,
+    position: "25.5%",
+  },
+  {
+    number: 1,
+    position: "0%",
+  },
 ];
+let container = document.querySelector(".building-container");
+let elevator = document.querySelector(".elevator");
+let currentFloor = 1;
 
-let isLiftMoving = false;
-const callingFloors = [];
-
-const liftContainer = document.querySelector(".liftContainer");
-const leftDoor = document.querySelector(".leftDoor");
-const rightDoor = document.querySelector(".rightDoor");
-const floorBtn = document.querySelectorAll(".floorBtn");
-
-floorBtn.forEach((button, index) => {
-    button.addEventListener("click", (e) => {
-        if (!e.target.classList.contains("clickedBtn")) {
-            e.target.classList.add("clickedBtn");
-            callingFloors.push(floors[index]);
-            setInLine();
-        }
-    });
+floors.forEach((e, i) => {
+  container.innerHTML += `<div class='floor'><button class="elevator-btn">${e.number}</button></div>`;
 });
 
-function setInLine() {
-    if (isLiftMoving || callingFloors.length === 0) {
-        return
-    };
+const elevatorBtns = document.querySelectorAll(".elevator-btn");
 
-    isLiftMoving = true;
-    moveLift(callingFloors.shift(), () => {
-        setTimeout(() => {
-            isLiftMoving = false;
-            setInLine();
-        }, 2000);
-    });
-}
+elevatorBtns.forEach((btn, i) => {
+  btn.addEventListener("click", () => {
+    let comingFloor = btn.innerText;
+    elevator.style.transition = `${Math.abs(
+      comingFloor - currentFloor
+    )}s linear`;
+    elevator.style.bottom = floors[i].position;
 
-function moveLift(floor, callback) {
-    liftContainer.style.top = floor.position;
+    btn.disabled = true;
+    btn.style.backgroundColor = "#074c7767";
+
     setTimeout(() => {
-        floorBtn[floor.index].classList.remove("clickedBtn")
-        let time = floor
-        callback();
-    }, 1000);
-}
-    
+      currentFloor = btn.innerText;
+      btn.disabled = false;
+      btn.style.backgroundColor = "#074c77";
+    }, Math.abs(comingFloor - currentFloor) * 1000);
+  });
+});
