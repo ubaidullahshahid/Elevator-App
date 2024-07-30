@@ -8,7 +8,6 @@
   background-color: #074c77;
   height: 100vh;
   width: 100%;
-  gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,7 +86,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 8px;
+  gap: 9px;
 }
 
 .elevator-btn {
