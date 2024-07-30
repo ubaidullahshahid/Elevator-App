@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  padding-right: 200px;
+  padding-right: 15%;
 }
 
 .elevator-container {
@@ -29,14 +29,18 @@
   background-color: #074c77;
   position: absolute;
   width: 20%;
+  overflow: hidden;
 }
 
 .elevator {
+  z-index: 4;
   position: absolute;
   bottom: 0px;
   width: 100%;
   height: 24%;
   display: flex;
+  background-image: url(./imgs/avatar2.jpeg);
+  background-size: 100% 100%;
   /* transition: 1s linear; */
 }
 .door {
@@ -52,6 +56,8 @@
   );
   width: 50%;
   height: 100%;
+  position: relative;
+  transition: 1s linear;
 }
 .left-door {
   background: linear-gradient(
@@ -64,6 +70,7 @@
     #fff 80%,
     #999 95%
   );
+  left: 0px;
 }
 .right-door {
   background: linear-gradient(
@@ -76,7 +83,7 @@
     #fff 80%,
     #999 95%
   );
-
+  right: 0px;
   border-left: 2px solid #4d8088;
 }
 
@@ -90,8 +97,8 @@
 }
 
 .elevator-btn {
-  width: 100px;
-  height: 100px;
+  width: 9%;
+  height: 70%;
   border-radius: 100%;
   border: none;
   outline: none;
@@ -99,4 +106,15 @@
   color: white;
   cursor: pointer;
   font-size: 20px;
+}
+
+.elevator-chain {
+  width: 20%;
+  height: 99.4%;
+  position: absolute;
+}
+
+.elevator-chain img {
+  width: 100%;
+  height: 100%;
 }
